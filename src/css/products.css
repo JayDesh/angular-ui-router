@@ -27,10 +27,7 @@ update{
 #search-products-table tr td, #search-products-table th{
     border: 1px solid!important;
 }
-{
-    border: 1px solid;
-    border-collapse: collapse;
-}
- {
-    border: 1px solid;
+.active{
+  background:#808080;
+  color: #ffffff;
 }

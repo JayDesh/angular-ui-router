@@ -1,8 +1,25 @@
 //// <reference path="angular.min.js"/>
 var myApp = angular
   .module( "productModule", ["ui.router"] )
-  .config( function ( $stateProvider ) {
+  .config( function ( $stateProvider, $urlMatcherFactoryProvider, $urlRouterProvider ) {
+
+    $urlMatcherFactoryProvider.caseInsensitive( true );
+    $urlRouterProvider.otherwise("/");
+
     $stateProvider
+      .state("home", {
+        url: '/',
+        templateUrl:'src/templates/home.html',
+        controller: 'homeController',
+        controllerAs:'homeCtrl',
+        customData: {
+          homeData1 : "Products",
+          homeData2 : "Services",
+          homeData3 : function(){
+            return 'AutoCAD Cloud Services';
+          }
+        }
+      })
       .state("products", {
         url: '/products',
         templateUrl:'src/templates/product-table.html',
@@ -15,6 +32,11 @@ var myApp = angular
               return response.data;
             });
           }
+        },
+        data:{
+          favoriteProducts1: 'AutoCAD',
+          favoriteProducts2: 'MayaLT',
+          favoriteProducts3: productsCustomData()
         }
       })
       .state("searchProducts",{
@@ -30,6 +52,16 @@ var myApp = angular
         controllerAs:'prodSearchCtrl'
       })
     })
+  .controller("homeController", function ($state) {
+      var vm = this;
+      vm.homeFav1 = $state.current.customData.homeData1;
+      vm.homeFav2 = $state.get('home').customData.homeData2;
+      vm.homeFav3 = $state.current.customData.homeData3();
+      vm.fav1 = $state.get('products').data.favoriteProducts1;
+      vm.fav2 = $state.get('products').data.favoriteProducts2;
+      vm.fav3 = $state.get('products').data.favoriteProducts3;
+
+  })
   .controller( "productController", function ( products, $scope, $state ) {
       var vm = this;
       vm.searchResult = products;
@@ -49,9 +81,16 @@ var myApp = angular
       });
   })
   .controller("searchProductsController", function($http, $stateParams ){
-      var vm = this;
-      $http.get("http://localhost:3000/searchByName/" + $stateParams.name)
+      var vm = this,
+        url= "http://localhost:3000";
+      url = $stateParams.name ? url + "/searchByName/" + $stateParams.name : url;
+      $http.get( url)
       .then( function ( response ){
         vm.products = response.data;
       });
   });
+
+
+  function productsCustomData() {
+    return 'OnlineStorage';
+  }
