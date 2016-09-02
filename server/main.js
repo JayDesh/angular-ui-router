@@ -50,8 +50,6 @@ app.get( '/', function ( req, res ) {
 } );
 
 app.get( '/searchById/:id', function( req, res ) {
-    console.log( 'in search by id');
-    console.log ( req.params.id );
     // getData( req, res, 'id', req.params.id, 'http://localhost:8000/searchById' );
     pg.connect( connectString, function( err, client, done ) {
       if( err ) {
@@ -72,38 +70,15 @@ app.get( '/searchById/:id', function( req, res ) {
     });
 });
 
+app.get( '/searchByName/', function ( req, res ) {
+    console.log ( 'in search by name api');
+    setTimeout( getData( req, res, '', req.params.name,'http://localhost:8000' ), 10000 );
+  });
+
 //http://localhost:3000/searchByName/Lotstring
 app.get( '/searchByName/:name', function ( req, res ) {
-
-    setTimeout( getData( req, res, 'name', req.params.name,'http://localhost:8000' ), 10000 );
-    // console.log( 'in search by name');
-    // var requestingURL = 'http://localhost:8000',
-    // querySql = 'SELECT * FROM product';
-    //
-    // pg.connect( connectString, function( err, client, done ) {
-    //   if( err ) {
-    //     return console.error( 'error connecting to datasource' );
-    //   }
-    //   if( req.params.name ){
-    //     querySql = querySql + " where name = '"  + req.params.name + "'";
-    //   }
-    //   console.log( 'querySql = ' + querySql );
-    //   client.query( querySql, function ( err, result ){
-    //     if ( err ){
-    //       return console.error ( 'error running query' );
-    //     }
-    //
-    //     setTimeout( function () {
-    //       console.log ( 'in set timeout' );
-    //     }, 10000);
-    //
-    //     console.log('after set timeout');
-    //     setResponseHeaders ( res, requestingURL );
-    //     res.send( result.rows );
-    //     done();
-    //
-    //    });
-    // });
+    console.log ( 'in search by name api');
+    setTimeout( getData( req, res, 'name', req.params.name,'http://localhost:8000' ), 90000 );
   });
 
 app.listen( 3000, function () {
