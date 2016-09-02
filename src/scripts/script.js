@@ -17,6 +17,12 @@ var myApp = angular
           }
         }
       })
+      .state("searchProducts",{
+        url:'/products/searchProducts/:name',
+        templateUrl:'src/templates/product-details.html',
+        controller:'searchProductsController',
+        controllerAs:'prodSearchCtrl'
+      })
       .state( "productDetails", {
         url: '/products/:id',
         templateUrl:'src/templates/product-details.html',
@@ -24,9 +30,13 @@ var myApp = angular
         controllerAs:'prodSearchCtrl'
       })
     })
-  .controller( "productController", function ( products, $scope ) {
+  .controller( "productController", function ( products, $scope, $state ) {
       var vm = this;
       vm.searchResult = products;
+      $scope.searchProducts = function( searchProducts ) {
+          $state.go("searchProducts", { name: searchProducts} );
+      }
+
   })
   .controller("productDetailsController", function ( $http, $scope, $stateParams, $log ) {
     var vm = this;
@@ -36,5 +46,12 @@ var myApp = angular
           })
       .then( function ( response ) {
         vm.products =  response.data;
+      });
+  })
+  .controller("searchProductsController", function($http, $stateParams ){
+      var vm = this;
+      $http.get("http://localhost:3000/searchByName/" + $stateParams.name)
+      .then( function ( response ){
+        vm.products = response.data;
       });
   });

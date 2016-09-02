@@ -3,7 +3,7 @@
   <div>
     <span>Search Product: </span>
     <input data-ng-model="searchString" placeholder="Enter product name" type="text"></input>
-    <button class="btn btn-primary" data-ng-click="getProduct()">Search</button>
+    <button class="btn btn-primary" data-ng-click="searchProducts(searchString)">Search</button>
   </div>
   <table class="table table-striped table-hover contianer" id="product-list" >
     <tr class="row" data-ng-repeat="product in prdCtrl.searchResult">

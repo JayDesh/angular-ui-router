@@ -75,7 +75,7 @@ app.get( '/searchById/:id', function( req, res ) {
 //http://localhost:3000/searchByName/Lotstring
 app.get( '/searchByName/:name', function ( req, res ) {
 
-    setTimeout( getData( req, res, 'name', req.params.name,'http://localhost:8000/searchByName' ), 10000 );
+    setTimeout( getData( req, res, 'name', req.params.name,'http://localhost:8000' ), 10000 );
     // console.log( 'in search by name');
     // var requestingURL = 'http://localhost:8000',
     // querySql = 'SELECT * FROM product';
