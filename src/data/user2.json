@@ -1,0 +1,4 @@
+{
+  "status": "success",
+  "user": {"id":2,"firstName":"Scott","lastName":"Law","email":"slawrence1@squidoo.com","gender":"Male","ipAddress":"114.196.232.200"}
+}

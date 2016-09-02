@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html data-ng-app="productModule">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="./src/css/products.css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" src='./lib/angular/angular.js'></script>
+    <script type="text/javascript" src='./lib/angular-ui-router.js'></script>
+    <script type="text/javascript" src='./src/scripts/script.js'></script>
+  </head>
+    <body class="container-fluid">
+    <div class= "row text-center header">
+      <div class="col-md-3 hidden-xs hidden-sm products-img"></div>
+      <div class="col-md-9 col-xs-12">
+        <h1>Multi Products Enterprise</h1>
+      </div>
+    </div>
+
+    <div class="main-page row">
+      <div class="left-nav col-xs-3 col-sm-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="#/products">Home</a></li>
+            <li><a href="#/user-management">User Management</a></li>
+            <li><a href="#/product-updates">Product Updates</a></li>
+        </ul>
+      </div>
+      <div class="main-content col-xs-9 col-sm-10">
+          <ui-view></ui-view>
+      </div>
+    </div>
+    <div class= "row text-center footer">
+      <div class="col-xs-12">Footer</div>
+    </div>
+  </body>
+</html>

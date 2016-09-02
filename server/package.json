@@ -1,0 +1,23 @@
+{
+  "name": "product",
+  "version": "1.0.0",
+  "description": "Interface to get product details",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "products"
+  ],
+  "author": "Jayesh Deshmukh",
+  "license": "MIT",
+  "dependencies":{
+    "body-parser":"*",
+    "consolidate":"*",
+    "dust": "*",
+    "dustjs-helpers": "*",
+    "dustjs-linkedin": "*",
+    "express": "*",
+    "pg":"*"
+  }
+}

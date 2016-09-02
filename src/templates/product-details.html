@@ -1,0 +1,21 @@
+<h3>Product Search Page</h3>
+<table id="search-products-table" >
+  <thead>
+      <th>Unique Id</th>
+      <th>Product Name</th>
+      <th>Product Version</th>
+      <th>Company</th>
+      <th>Contract Number</th>
+      <th>Type</th>
+  </thead>
+  <tbody>
+    <tr  data-ng-repeat="product in prodSearchCtrl.products">
+      <td>{{product.id}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.version}}</td>
+      <td>{{product.company}}</td>
+      <td>{{product.contractNumber}}</td>
+      <td>{{product.type}}</td>
+   <tr>
+  </tbody>
+</table>
