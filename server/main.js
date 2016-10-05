@@ -81,6 +81,12 @@ app.get( '/searchByName/:name', function ( req, res ) {
     setTimeout( getData( req, res, 'name', req.params.name,'http://localhost:8000' ), 90000 );
   });
 
+app.get('/getTotals', function( req, res )  {
+
+  setResponseHeaders (res, 'http://localhost:8000');
+  res.send('{"total":100, "types":3, "companies":20}');
+});
+
 app.listen( 3000, function () {
   console.log('server started on 3000');
 });

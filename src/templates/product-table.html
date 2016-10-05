@@ -8,7 +8,7 @@
   <table class="table table-striped table-hover contianer" id="product-list" >
     <tr class="row" data-ng-repeat="product in prdCtrl.searchResult">
       <td>
-        <div class="col-xs-2"><a ui-sref="productDetails({id:product.id})">{{product.id}}</div>
+        <div class="col-xs-2"><a ui-sref="totals.productDetails({id:product.id})">{{product.id}}</div>
         <div class="col-xs-10">
           <div class="col-xs-12 product-name">Product Name: {{product.name}}</div>
           <div class="col-xs-6 product-version">Product Version: {{product.version}}</div>

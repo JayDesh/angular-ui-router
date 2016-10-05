@@ -20,14 +20,29 @@ var myApp = angular
           }
         }
       })
-      .state("products", {
+      .state("totals", {
         url: '/products',
+        templateUrl:'src/templates/totals.html',
+        controller: 'parentController',
+        controllerAs: 'parentCtrl',
+        resolve: {
+          aggregations : function ( $http ) {
+            return $http.get( "http://localhost:3000/getTotals")
+              .then( function ( response ) {
+                return response.data;
+              });
+          }
+        },
+        abstract: true
+      })
+      .state("totals.products", {
+        url: '/all',
         templateUrl:'src/templates/product-table.html',
         controller:'productController',
         controllerAs: 'prdCtrl',
         resolve:{
           products: function($http){
-            return $http.get("http://localhost:3000/")
+            return $http.get("http://localhost:3000")
             .then( function ( response ) {
               return response.data;
             });
@@ -45,8 +60,8 @@ var myApp = angular
         controller:'searchProductsController',
         controllerAs:'prodSearchCtrl'
       })
-      .state( "productDetails", {
-        url: '/products/:id',
+      .state( "totals.productDetails", {
+        url: '/:id',
         templateUrl:'src/templates/product-details.html',
         controller:'productDetailsController',
         controllerAs:'prodSearchCtrl'
@@ -57,9 +72,14 @@ var myApp = angular
       vm.homeFav1 = $state.current.customData.homeData1;
       vm.homeFav2 = $state.get('home').customData.homeData2;
       vm.homeFav3 = $state.current.customData.homeData3();
-      vm.fav1 = $state.get('products').data.favoriteProducts1;
-      vm.fav2 = $state.get('products').data.favoriteProducts2;
-      vm.fav3 = $state.get('products').data.favoriteProducts3;
+      vm.fav1 = $state.get('totals.products').data.favoriteProducts1;
+      vm.fav2 = $state.get('totals.products').data.favoriteProducts2;
+      vm.fav3 = $state.get('totals.products').data.favoriteProducts3;
+
+  })
+  .controller("parentController", function ( aggregations ) {
+    vm = this;
+    vm.aggregations = aggregations;
 
   })
   .controller( "productController", function ( products, $scope, $state ) {
